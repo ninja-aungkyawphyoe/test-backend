@@ -1,0 +1,38 @@
+spring:
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+    exchanges:
+      internal: internal.exchange
+    queues:
+      notification: notification.queue
+    routing-keys:
+      internal-notification: internal.notification.routing-key
+  datasource:
+    url: postgres://postgres:yFIivcmkGLMULitH0XMi@revirx.cluster-cxqiosiqcnzk.ap-southeast-2.rds.amazonaws.com:5432/user-mgmt-db
+    username: postgres
+    password: yFIivcmkGLMULitH0XMi
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        multiTenancy: SCHEMA
+#        tenant_identifier_resolver: com.marvellous.application.config.TenantIdResolver
+    hibernate:
+      ddl-auto: update
+  # Hibernate ddl auto (create, create-drop, validate, update)
+  data:
+    web:
+      pageable:
+        page-parameter: page
+        size-parameter: size
+        default-page-size: 20
+        one-indexed-parameters: false
+        max-page-size: 2000
+        qualifier-delimiter: _
